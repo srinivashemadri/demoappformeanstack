@@ -1,0 +1,53 @@
+<div *ngIf="!isloading">
+    <div *ngIf= "allposts">
+        <button mat-button color="primary" class="btn-block" (click)="fetchmyposts()">View my posts</button>
+    </div>
+    
+    <div *ngIf= "!allposts">
+        <button mat-button color="primary" class="btn-block" (click)="fetchallposts()">View all posts</button>
+    </div>
+    
+    <div *ngIf="allposts">
+        <div  *ngFor = "let i of posts ">
+            <div *ngIf="i.email != returnmyemail()">
+                <mat-card>
+                    <mat-card-title>{{i.email}}</mat-card-title>
+                    <mat-card-subtitle>{{i.description}}</mat-card-subtitle>
+                    <mat-card-content>
+                        <img width="100%" height="100%" [src]="i.url" alt="Image">
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div *ngIf="!allposts">
+        <div  *ngFor = "let i of posts "  >
+    
+            <div *ngIf="i.email == returnmyemail()">
+                <mat-card>
+                    <mat-card-title>{{i.email}}</mat-card-title>
+                    <mat-card-subtitle>{{i.description}}</mat-card-subtitle>
+                    <mat-card-content>
+                        <img width="100%" height="100%"  [src]="i.url" alt="Image">
+                    </mat-card-content>
+    
+                    <button mat-raised-button color="warn" (click)="deletepost(i._id)">Delete This Post</button>
+                </mat-card>
+            </div>
+    
+            
+        
+        </div>
+    
+    </div>
+    
+</div>
+
+<div *ngIf="isloading">
+
+    <mat-spinner style="margin-left: 40%; margin-top: 15%;"></mat-spinner>
+
+
+</div>

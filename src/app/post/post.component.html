@@ -1,0 +1,25 @@
+<div *ngIf="!isloading">
+    <mat-card>
+
+        <img height="500" width="500" [src]="fileurl" alt="">
+        <form #ng="ngForm" (ngSubmit)="post(ng)">
+            <input accept="image/*" type="file" (input) = "getfile($event.target.files[0])" ngModel required name="file">
+            <textarea  name="description" placeholder="Describe your post" required  cols="30" rows="10" ngModel></textarea>
+            <div class="text-center">
+                <button type="submit" mat-stroked-button color="primary">Post</button>
+            </div>
+        </form>
+    </mat-card>
+    
+    
+</div>
+
+<div *ngIf="isloading">
+
+    <mat-spinner style="margin-left: 40%; margin-top: 15%;"></mat-spinner>
+
+
+</div>
+
+
+

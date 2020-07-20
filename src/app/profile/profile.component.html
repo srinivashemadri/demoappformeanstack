@@ -1,0 +1,26 @@
+<div *ngIf="!isloading" >
+    <h4 class="display-4 text-center">My profile</h4>
+    <mat-card>
+        <form #ng="ngForm" (ngSubmit)="update(ng)">
+           <mat-form-field>
+                <input matInput type="text" name="email" required placeholder="Email" readonly
+                 [(ngModel)] = "email">
+                
+           </mat-form-field>
+           <mat-form-field>
+               <input matInput type="text" name="name" required placeholder="Name"
+                [(ngModel)]="name">
+               <mat-error>Name is required</mat-error> 
+           </mat-form-field>
+           <div class="text-center" *ngIf="buttonenabled">
+                <button id="savebutton" mat-stroked-button color="primary" type="submit">Save</button>
+           </div>
+        </form>
+    </mat-card>
+</div>
+<div *ngIf="isloading">
+
+    <mat-spinner style="margin-left: 40%; margin-top: 15%;"></mat-spinner>
+
+
+</div>
